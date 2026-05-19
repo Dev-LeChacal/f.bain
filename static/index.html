@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>f.bain</title>
+    <title>Share</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="js/file.js"></script>
     <script defer src="js/progress.js"></script>
@@ -14,8 +14,8 @@
 <body>
 <label for="fi" style="opacity: 0;">file input</label>
 <label for="si" style="opacity: 0;">key strength input</label>
-<input type="file" ondrop="dropHandler(event);" x-r="fileInput" onchange="inputHandler(event);" 
-    autocomplete="off" class="file-input" id="fi">
+<input type="file" ondrop="dropHandler(event);" x-r="fileInput" onchange="inputHandler(event);"
+       autocomplete="off" class="file-input" id="fi">
 <div class="center click-through" x-r="container">
     <div id="welcome-div" x-r="screen.0">
         <img src="upload.svg" alt="upload file icon"/>
@@ -43,11 +43,6 @@
     <p style="font-size: small;">Max file size: <span style="color: var(--white)" x-r="filesize">0B</span></p>
 
     <p style="font-size: small;">End to end encrypted file sharing. Ignorance is bliss.</p>
-
-    <p>
-        <a href="https://github.com/bain3/f.bain#how-does-it-work" target="_blank" rel="noopener noreferrer">
-            How does it work?</a>
-    </p>
 </div>
 </body>
 </html>

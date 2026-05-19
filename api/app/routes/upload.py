@@ -1,4 +1,3 @@
-import logging
 import os
 import secrets
 from random import choice
@@ -11,7 +10,7 @@ from ..db import redis
 from ..models import FileMeta, SessionToken
 
 UUID_SIZE = int(os.getenv("UUID_SIZE", 5))
-MONTH_SECONDS = 30 * 24 * 60 * 60
+DAY_SECONDS = 24 * 60 * 60
 
 router = APIRouter()
 
@@ -19,12 +18,11 @@ router = APIRouter()
 def generate_unique_uuid() -> str:
     # get a new uuid
     uuid = None
+
     while uuid is None or redis.exists("file:" + uuid):
         uuid = "".join(
             [
-                choice(
-                    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                )
+                choice("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
                 for _ in range(UUID_SIZE)
             ]
         )
@@ -87,7 +85,7 @@ async def handle_upload(socket: WebSocket, session: str) -> None:
         redis.hset(
             "file:" + uuid, mapping={"metadata": meta, "revocation": revocation_token}
         )
-        redis.expire("file:" + uuid, MONTH_SECONDS)
+        redis.expire("file:" + uuid, DAY_SECONDS)
 
         redis.delete("session:" + session)
 
@@ -108,12 +106,15 @@ async def make_session(body: FileMeta):
         raise HTTPException(status_code=422, detail="File too large")
 
     session_token = None
+
     while session_token is None or redis.exists("session:" + session_token):
         session_token = secrets.token_hex(16)
+
     redis.hset(
         "session:" + session_token,
         mapping={"size": body.content_length, "meta": body.json(), "block": 0},
     )
+
     redis.expire("session:" + session_token, 7200)
 
     return {"session_token": session_token}
@@ -122,13 +123,18 @@ async def make_session(body: FileMeta):
 @router.websocket("/upload/{session_token}")
 async def session_upload(socket: WebSocket, session_token: str):
     await socket.accept()
+
     if not redis.exists("session:" + session_token):
         await socket.send_json({"code": 404, "detail": "Session does not exist"})
         await socket.close(1000)
+
         return
+
     try:
         await handle_upload(socket, session_token)
+
     except WebSocketDisconnect:
         pass
+
     else:
         await socket.close(1000)

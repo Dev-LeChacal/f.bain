@@ -32,9 +32,9 @@ async function on_load() {
 
     R('button').style.display = 'flex';
     let progress = new Progress({
-        status: "neutral",
-        statusText: "Fetching file metadata"
-    },
+            status: "neutral",
+            statusText: "Fetching file metadata"
+        },
         R('prgrs.value'),
         R('prgrs.status'),
         (p) => `calc(${12 * p}rem + ${20 * p}px)`
@@ -187,16 +187,6 @@ function deleteFile() {
             R('settings.text').innerText = "File deletion failed";
         }
     };
-}
-
-async function setExpire() {
-    let now = Math.round(new Date().getTime() / 1000);
-    let expirations = [now + 7 * 24 * 60 * 60, now + 30 * 24 * 60 * 60, -1];
-    let expire_in = expirations[(expire_index++) % 3];
-    if (await ForeignFile.set_expires_at(file_id, revocationToken, expire_in)) {
-        if (expire_in > 0) R('settings.expiration').innerText = `Expires in: ${secondsToDays(expire_in - now)} days`;
-        else R('settings.expiration').innerText = "Expires in: never";
-    }
 }
 
 async function loadExpire() {
