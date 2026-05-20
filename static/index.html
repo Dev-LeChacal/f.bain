@@ -13,7 +13,6 @@
 </head>
 <body>
 <label for="fi" style="opacity: 0;">file input</label>
-<label for="si" style="opacity: 0;">key strength input</label>
 <input type="file" ondrop="dropHandler(event);" x-r="fileInput" onchange="inputHandler(event);"
        autocomplete="off" class="file-input" id="fi">
 <div class="center click-through" x-r="container">
@@ -26,10 +25,6 @@
             In order to encrypt your files locally your browser needs to support javascript.
             Please try again with a different browser.
         </noscript>
-        <p class="key-strength">key strength:
-            <input type="number" value="15" min="10" max="128" id="si"
-                   onchange="strength=Math.min(parseInt(this.value, 10), 128); this.value=strength;"/>
-        </p>
     </div>
 
     <div id="progress-div" style="visibility: hidden;" x-r="screen.1">
@@ -41,8 +36,6 @@
 </div>
 <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 20; text-align: center">
     <p style="font-size: small;">Max file size: <span style="color: var(--white)" x-r="filesize">0B</span></p>
-
-    <p style="font-size: small;">End to end encrypted file sharing. Ignorance is bliss.</p>
 </div>
 </body>
 </html>
