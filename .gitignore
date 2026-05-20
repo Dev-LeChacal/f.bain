@@ -35,7 +35,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-!frontend/src/lib/
+!frontend/lib/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -139,3 +139,4 @@ dmypy.json
 .pyre/
 node_modules
 static
+old-frontend
