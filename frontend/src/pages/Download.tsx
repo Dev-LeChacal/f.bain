@@ -176,7 +176,6 @@ const Download = () => {
 
             <div className="flex flex-col items-center max-w-[min(500px,90vw)] w-full mx-4">
                 <div className="flex flex-row items-center gap-4">
-                    <img src="/file.svg" alt="file"/>
                     <div className="text-left">
                         <p className="text-white font-medium break-all mb-1">{ filename }</p>
                         <p className="text-sm text-gray-400 mb-2">{ fileSize }</p>
