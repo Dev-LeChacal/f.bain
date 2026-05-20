@@ -81,7 +81,7 @@ const Download = () => {
             setFileSize( getSizeHumanReadable( file.size ) )
 
             const lower = file.filename.toLowerCase()
-            if ( file.size <= 10_000_000 && (lower.endsWith( '.jpg' ) || lower.endsWith( '.png' )) ) {
+            if ( file.size <= 10_000_000 && (lower.endsWith( '.jpg' ) || lower.endsWith( '.png' ) || lower.endsWith( '.svg' )) ) {
                 file.getData( p => setProgress( prev => ({ ...prev, ...p as object }) ) ).then( blob => {
                     const url = URL.createObjectURL( blob )
                     blobRef.current = url
