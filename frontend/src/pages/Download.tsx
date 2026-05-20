@@ -81,6 +81,7 @@ const Download = () => {
             setFileSize( getSizeHumanReadable( file.size ) )
 
             const lower = file.filename.toLowerCase()
+
             if ( file.size <= 10_000_000 && (lower.endsWith( '.jpg' ) || lower.endsWith( '.png' ) || lower.endsWith( '.svg' )) ) {
                 file.getData( p => setProgress( prev => ({ ...prev, ...p as object }) ) ).then( blob => {
                     const url = URL.createObjectURL( blob )
@@ -89,9 +90,11 @@ const Download = () => {
                     setDownloaded( true )
                     setProgress( { status: 'done', text: 'Save', progress: 1 } )
                 } )
+
             } else {
                 setProgress( { status: 'ready', text: 'Download', progress: 0 } )
             }
+
         } ).catch( e => {
             setProgress( { status: 'error', text: String( e ), progress: 1 } )
         } )
@@ -124,12 +127,16 @@ const Download = () => {
 
     const handleDelete = async () => {
         if ( !uuid ) return
+
         const confirmed = window.confirm( 'Are you sure?' )
         if ( !confirmed ) return
+
         const ok = await ForeignFile.delete( uuid, revocationToken )
+
         if ( ok ) {
             localStorage.removeItem( `revocation-${ uuid }` )
             window.location.href = '/'
+
         } else {
             setSettingsText( 'File deletion failed' )
         }
@@ -144,6 +151,7 @@ const Download = () => {
 
     const handleImportToken = () => {
         if ( !tokenInput ) return
+
         localStorage.setItem( `revocation-${ uuid }`, tokenInput )
         setRevocationToken( tokenInput )
         setHasToken( true )
@@ -168,7 +176,7 @@ const Download = () => {
 
             <div className="flex flex-col items-center max-w-[min(500px,90vw)] w-full mx-4">
                 <div className="flex flex-row items-center gap-4">
-                    <img src="/file.svg" alt="file" height="90"/>
+                    <img src="/file.svg" alt="file"/>
                     <div className="text-left">
                         <p className="text-white font-medium break-all mb-1">{ filename }</p>
                         <p className="text-sm text-gray-400 mb-2">{ fileSize }</p>
