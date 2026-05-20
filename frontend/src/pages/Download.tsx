@@ -189,7 +189,7 @@ const Download = () => {
                                 className="flex items-center justify-center w-8 h-8 bg-[#21212f] rounded-full cursor-pointer hover:brightness-125"
                                 onClick={ () => setShowSettings( !showSettings ) }
                             >
-                                <img src="/gear.svg" alt="settings" className="h-full p-1.5"/>
+                                <img src="/settings.svg" alt="settings" className="h-full p-1.5"/>
                             </div>
                         </div>
                     </div>
