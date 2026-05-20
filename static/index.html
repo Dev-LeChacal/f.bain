@@ -1,41 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
+    <link href="/upload.svg" rel="icon" type="image/svg+xml"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Share</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="js/file.js"></script>
-    <script defer src="js/progress.js"></script>
-    <script defer src="js/referencer.js"></script>
-    <script defer src="js/script.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/landing.css">
+  <script type="module" crossorigin src="/assets/index-CndMWDpf.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-U3bnbjM5.css">
 </head>
 <body>
-<label for="fi" style="opacity: 0;">file input</label>
-<input type="file" ondrop="dropHandler(event);" x-r="fileInput" onchange="inputHandler(event);"
-       autocomplete="off" class="file-input" id="fi">
-<div class="center click-through" x-r="container">
-    <div id="welcome-div" x-r="screen.0">
-        <img src="upload.svg" alt="upload file icon"/>
-
-        <p style="margin-bottom: 0.4em;">Click or drop to upload</p>
-
-        <noscript style="color: var(--error)">
-            In order to encrypt your files locally your browser needs to support javascript.
-            Please try again with a different browser.
-        </noscript>
-    </div>
-
-    <div id="progress-div" style="visibility: hidden;" x-r="screen.1">
-        <div class="progress" x-r="prgrs">
-            <div class="progress-value" x-r="prgrs.value"></div>
-        </div>
-        <p x-r="prgrs.status"></p>
-    </div>
-</div>
-<div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 20; text-align: center">
-    <p style="font-size: small;">Max file size: <span style="color: var(--white)" x-r="filesize">0B</span></p>
-</div>
+<div id="root"></div>
 </body>
 </html>
