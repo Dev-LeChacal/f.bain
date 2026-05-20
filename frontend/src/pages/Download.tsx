@@ -161,7 +161,7 @@ const Download = () => {
         : `${ (progress.progress as number) * 100 }%`
 
     return (
-        <div className="flex items-start justify-center w-full min-h-screen pt-16">
+        <div className="flex flex-col items-center w-full min-h-screen pt-16">
             { previewUrl && (
                 <img src={ previewUrl } alt="preview" className="max-w-[90vw] max-h-[60vh] mb-4"/>
             ) }
