@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Upload from './pages/Upload'
-import Download from './pages/Download'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Upload from "./components/Upload.tsx"
+import Download from "./components/Download.tsx"
 
 const App = () => {
     return (
