@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+    --white: #fefefe;
+    --primary: #7f7f7f;
+    --secondary: #21212f;
+    --background: #13131b;
+    --error: #bf3b3b;
+    --success: #35c135;
+}
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--primary);
+    font-family: sans-serif;
+}
